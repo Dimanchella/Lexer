@@ -110,7 +110,7 @@ public class Lexer {
         }
     }
 
-    private String getTokenLexeme(String string, int startPos, int lastPos) throws Exception {
+    private String getTokenLexeme(String string, int startPos, int lastPos) {
         StringBuilder lexeme = new StringBuilder();
         for (int i = startPos; i <= lastPos; i++) {
             lexeme.append(string.charAt(i));
