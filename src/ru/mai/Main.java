@@ -10,41 +10,35 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            //FileInputStream fileInputStream = new FileInputStream(INPUT_FILE);
-            //InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-            //BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            FileInputStream fileInputStream = new FileInputStream(INPUT_FILE);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(INPUT_FILE)));
             StringBuilder fileSB = new StringBuilder();
             while (bufferedReader.ready()) {
                 fileSB.append(bufferedReader.readLine()).append('\n');
             }
+
             bufferedReader.close();
+            inputStreamReader.close();
+            fileInputStream.close();
 
-            String fileStr = fileSB.toString();
-            Lexer lexer = new Lexer();
-            int startPos = 0;
-            while (startPos < fileSB.length()) {
-                Token token = new Token();
-                startPos = lexer.getNextToken(fileStr, startPos, token);
-                if (token.getName() != null) {
-                    System.out.println(
-                            new StringBuilder()
-                            .append('(')
-                            .append(token.getName())
-                            .append(' ')
-                            .append('\"')
-                            .append(token.getLexeme())
-                            .append('\"')
-                            .append(')')
-                            .toString()
-                    );
-                }
-            }
-
-            //bufferedReader.close();
-            //inputStreamReader.close();
-            //fileInputStream.close();
+            Lexer lexer = new Lexer(fileSB.toString());
+            Token token;
+            do {
+                token = lexer.getNextToken();
+                System.out.println(
+                        new StringBuilder()
+                                .append('(')
+                                .append(token.getName())
+                                .append(' ')
+                                .append('\"')
+                                .append(token.getLexeme())
+                                .append('\"')
+                                .append(')')
+                                .toString()
+                );
+            } while (!token.getName().equals("eof"));
         } catch (Exception e) {
             System.err.println(e);
         }
