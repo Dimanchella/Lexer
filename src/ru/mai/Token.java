@@ -5,9 +5,6 @@ public class Token {
     private String name;
     private String lexeme;
 
-    public Token() {
-    }
-
     public Token(String name, String lexeme) {
         this.lexeme = lexeme;
         this.name = name;
@@ -17,15 +14,12 @@ public class Token {
         return lexeme;
     }
 
-    public void setLexeme(String value) {
-        lexeme = value;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String value) {
-        name = value;
+    @Override
+    public String toString() {
+        return "(" + name + " \"" + lexeme + "\")";
     }
 }

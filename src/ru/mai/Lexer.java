@@ -132,6 +132,9 @@ public class Lexer {
         return false;
     }
 
+    //private int getLastAcceptingState() {
+
+    //}
 
     public Token getNextToken() throws Exception {
         int state = 0;
@@ -154,12 +157,12 @@ public class Lexer {
 
         if (lastAccepting >= 0) {
             return new Token(getTokenName(lastAccepting), getTokenLexeme(nextLastPos));
-        } else if (skipSpaceSeparator()) {
+        } else if (isSpaceSeparator(researchedString.charAt(lastPos)) && skipSpaceSeparator()) {
             return getNextToken();
         } else if (lastPos >= researchedString.length()) {
             return new Token("eof", null);
         } else {
-            throw new Exception("Bad lexeme.");
+            throw new Exception("Bad lexeme!");
         }
     }
 }
