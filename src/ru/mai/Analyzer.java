@@ -25,10 +25,10 @@ public class Analyzer {
         lexer.setResearchedString(expr);
         token = lexer.getNextToken();
         root = E();
-        value = root.calculation();
         if (!token.getName().equals("eof")) {
             throw new Exception("Bad expression!");
         }
+        value = root.calculation();
     }
 
 
