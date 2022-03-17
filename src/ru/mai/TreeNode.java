@@ -29,6 +29,7 @@ public class TreeNode {
         return branches[1];
     }
 
+
     public String calculation() {
         StringBuilder value = new StringBuilder();
         if (token.getName().equals("operator")) {
