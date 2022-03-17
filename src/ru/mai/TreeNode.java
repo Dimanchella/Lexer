@@ -37,7 +37,9 @@ public class TreeNode {
             double num_1 = 0;
             double num_2 = 0;
             try {
-                num_1 = Double.parseDouble(branches[0].calculation());
+                if (branches[0] != null) {
+                    num_1 = Double.parseDouble(branches[0].calculation());
+                }
             } catch (NumberFormatException nfe) {
                 isParse = false;
             }
@@ -72,8 +74,7 @@ public class TreeNode {
                                     .append(token.getLexeme())
                                     .append(branches[1].calculation());
                         } else {
-                            value.append("-")
-                                    .append(branches[0].calculation());
+                            value.append("-").append(branches[0].calculation());
                         }
                     }
                     break;

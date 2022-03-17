@@ -38,7 +38,7 @@ public class Analyzer {
             token = lexer.getNextToken();
             return node;
         } else {
-            throw new Exception("Bad token: " + token.getLexeme());
+            throw new Exception("Bad token: " + token.toString());
         }
     }
 
