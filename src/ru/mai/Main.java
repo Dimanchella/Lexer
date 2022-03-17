@@ -25,8 +25,11 @@ public class Main {
             fileInputStream.close();
 
             printTokens(fileSB.toString());
-            printTree(fileSB.toString());
-            printCalculationResult(fileSB.toString());
+
+            Analyzer analyzer = new Analyzer();
+            analyzer.analyzeExpression(fileSB.toString());
+            System.out.println(analyzer.getRoot().toString());
+            System.out.println(analyzer.getValue());
 
         } catch (Exception e) {
             System.err.println(e);
@@ -40,17 +43,5 @@ public class Main {
             token = lexer.getNextToken();
             System.out.println(token.toString());
         } while (!token.getName().equals("eof"));
-    }
-
-    private static void printTree(String inputStr) throws Exception {
-        Analyzer analyzer = new Analyzer();
-        analyzer.analyzeExpression(inputStr);
-        System.out.println(analyzer.getRoot().toString());
-    }
-
-    private static void printCalculationResult(String inputStr) throws Exception {
-        Analyzer analyzer = new Analyzer();
-        analyzer.analyzeExpression(inputStr);
-        System.out.println(analyzer.getValue());
     }
 }
