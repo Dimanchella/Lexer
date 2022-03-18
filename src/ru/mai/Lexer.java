@@ -157,10 +157,10 @@ public class Lexer {
 
         if (lastAccepting >= 0) {
             return new Token(getTokenName(lastAccepting), getTokenLexeme(nextLastPos));
-        } else if (isSpaceSeparator(researchedString.charAt(lastPos)) && skipSpaceSeparator()) {
-            return getNextToken();
         } else if (lastPos >= researchedString.length()) {
             return new Token("eof", null);
+        } else if (isSpaceSeparator(researchedString.charAt(lastPos)) && skipSpaceSeparator()) {
+            return getNextToken();
         } else {
             throw new Exception("Bad lexeme!");
         }

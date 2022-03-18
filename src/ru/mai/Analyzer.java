@@ -1,10 +1,5 @@
 package ru.mai;
 
-import com.sun.source.tree.Tree;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class Analyzer {
 
     private Token token;
@@ -28,17 +23,17 @@ public class Analyzer {
         if (!token.getName().equals("eof")) {
             throw new Exception("Bad expression!");
         }
-        value = root.calculation();
+        value = root.calculate();
     }
 
 
     private TreeNode nextToken(String checkLexeme) throws Exception {
-        if (token.getLexeme().equals(checkLexeme)) {
+        if (token.getLexeme() != null && token.getLexeme().equals(checkLexeme)) {
             TreeNode node = new TreeNode(token);
             token = lexer.getNextToken();
             return node;
         } else {
-            throw new Exception("Bad token: " + token.toString());
+            throw new Exception("Bad token!");
         }
     }
 

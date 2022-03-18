@@ -7,6 +7,8 @@ public class TreeNode {
 
     public TreeNode(Token token) {
         this.token = token;
+        branches[0] = null;
+        branches[1] = null;
     }
 
     public Token getToken() {
@@ -30,7 +32,7 @@ public class TreeNode {
     }
 
 
-    public String calculation() {
+    public String calculate() {
         StringBuilder value = new StringBuilder();
         if (token.getName().equals("operator")) {
             boolean isParse = true;
@@ -38,14 +40,14 @@ public class TreeNode {
             double num_2 = 0;
             try {
                 if (branches[0] != null) {
-                    num_1 = Double.parseDouble(branches[0].calculation());
+                    num_1 = Double.parseDouble(branches[0].calculate());
                 }
             } catch (NumberFormatException nfe) {
                 isParse = false;
             }
             try {
                 if (branches[1] != null) {
-                    num_2 = Double.parseDouble(branches[1].calculation());
+                    num_2 = Double.parseDouble(branches[1].calculate());
                 }
             } catch (NumberFormatException nfe) {
                 isParse = false;
@@ -55,9 +57,9 @@ public class TreeNode {
                     if (isParse) {
                         value.append(num_1 + num_2);
                     } else {
-                        value.append(branches[0].calculation())
+                        value.append(branches[0].calculate())
                                 .append(token.getLexeme())
-                                .append(branches[1].calculation());
+                                .append(branches[1].calculate());
                     }
                     break;
                 }
@@ -70,11 +72,11 @@ public class TreeNode {
                         }
                     } else {
                         if (branches[1] != null) {
-                            value.append(branches[0].calculation())
+                            value.append(branches[0].calculate())
                                     .append(token.getLexeme())
-                                    .append(branches[1].calculation());
+                                    .append(branches[1].calculate());
                         } else {
-                            value.append("-").append(branches[0].calculation());
+                            value.append("-").append(branches[0].calculate());
                         }
                     }
                     break;
@@ -83,9 +85,9 @@ public class TreeNode {
                     if (isParse) {
                         value.append(num_1 * num_2);
                     } else {
-                        value.append(branches[0].calculation())
+                        value.append(branches[0].calculate())
                                 .append(token.getLexeme())
-                                .append(branches[1].calculation());
+                                .append(branches[1].calculate());
                     }
                     break;
                 }
@@ -93,9 +95,9 @@ public class TreeNode {
                     if (isParse) {
                         value.append(num_1 / num_2);
                     } else {
-                        value.append(branches[0].calculation())
+                        value.append(branches[0].calculate())
                                 .append(token.getLexeme())
-                                .append(branches[1].calculation());
+                                .append(branches[1].calculate());
                     }
                     break;
                 }
@@ -103,9 +105,9 @@ public class TreeNode {
                     if (isParse) {
                         value.append(Math.pow(num_1, num_2));
                     } else {
-                        value.append(branches[0].calculation())
+                        value.append(branches[0].calculate())
                                 .append(token.getLexeme())
-                                .append(branches[1].calculation());
+                                .append(branches[1].calculate());
                     }
                     break;
                 }
