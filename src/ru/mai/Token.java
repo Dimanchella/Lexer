@@ -20,6 +20,6 @@ public class Token {
 
     @Override
     public String toString() {
-        return "(" + name + " \"" + lexeme + "\")";
+        return '(' + name + " \"" + lexeme + "\")";
     }
 }
